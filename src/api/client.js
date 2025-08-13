@@ -8,7 +8,6 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   const key = import.meta.env.VITE_API_KEY;
   config.params = config.params || {};
-  // always append ?key=...
   if (key) config.params.key = key;
   return config;
 });
