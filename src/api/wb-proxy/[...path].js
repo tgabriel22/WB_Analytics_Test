@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   const target = Array.isArray(segs) ? segs.join("/") : segs;
   const url = new URL(`${base}/${target}`);
 
-  // copy all query params (including 'key' now)
   for (const [k, v] of Object.entries(req.query)) {
     if (k === "path") continue;
     Array.isArray(v)
@@ -15,7 +14,6 @@ export default async function handler(req, res) {
       : url.searchParams.append(k, v);
   }
 
-  // if no key was provided by the client, optionally fall back to server env
   if (!url.searchParams.has("key") && process.env.WB_API_KEY) {
     url.searchParams.set("key", process.env.WB_API_KEY);
   }
