@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
   const base = (
-    process.env.WB_API_BASE_URL || "http://109.73.206.144:6969/api"
+    process.env.VITE_API_BASE_URL || "http://109.73.206.144:6969/api"
   ).replace(/\/+$/, "");
-  const key = process.env.WB_API_KEY || "";
+  const key = process.env.VITE_API_KEY || "";
 
   const segs = req.query.path || [];
   const target = Array.isArray(segs) ? segs.join("/") : segs;
